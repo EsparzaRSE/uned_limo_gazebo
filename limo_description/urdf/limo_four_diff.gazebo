@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find uned_limo_gazebo)/limo_description/urdf/limo_gazebo.gazebo" />
+
+    <!-- Actuator configurations -->
+    <xacro:limo_wheel_transmission wheel_prefix="front_right" />
+    <xacro:limo_wheel_transmission wheel_prefix="front_left" />
+    <xacro:limo_wheel_transmission wheel_prefix="rear_left" />
+    <xacro:limo_wheel_transmission wheel_prefix="rear_right" />
+    <!-- Controller configurations -->
+    <xacro:gazebo_laser frame_prefix="laser" />
+    <xacro:gazebo_depth_camera frame_prefix="depth_camera" />
+    <xacro:gazebo_imu frame_prefix="imu" />
+    
+    <gazebo reference="$(arg robot_namespace)front_left_wheel">
+        <mu1>10</mu1>
+        <mu2>10</mu2>
+        <kp>10000000.0</kp>
+        <kd>1.0</kd>
+        <minDepth>0.01</minDepth>
+        <fdir1>1 0 0</fdir1>
+        <maxContacts value="64"/>
+    </gazebo>
+    <gazebo reference="$(arg robot_namespace)front_right_wheel">
+        <mu1>10</mu1>
+        <mu2>10</mu2>
+        <kp>10000000.0</kp>
+        <kd>1.0</kd>
+        <minDepth>0.01</minDepth>
+        <fdir1>1 0 0</fdir1>
+        <maxContacts value="64"/>
+    </gazebo>
+    <gazebo reference="$(arg robot_namespace)rear_left_wheel">
+        <mu1>10</mu1>
+        <mu2>10</mu2>
+        <kp>10000000.0</kp>
+        <kd>1.0</kd>
+        <minDepth>0.01</minDepth>
+        <fdir1>1 0 0</fdir1>
+        <maxContacts value="64"/>
+    </gazebo>
+    <gazebo reference="$(arg robot_namespace)rear_right_wheel">
+        <mu1>10</mu1>
+        <mu2>10</mu2>
+        <kp>10000000.0</kp>
+        <kd>1.0</kd>
+        <minDepth>0.01</minDepth>
+        <fdir1>1 0 0</fdir1>
+        <maxContacts value="64"/>
+    </gazebo>
+
+    <gazebo>
+        <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
+            <!-- front wheels -->
+            <left_joint>$(arg robot_namespace)front_left_wheel</left_joint>
+            <right_joint>$(arg robot_namespace)front_right_wheel</right_joint>
+
+            <!-- rear wheels -->
+            <left_joint>$(arg robot_namespace)rear_left_wheel</left_joint>
+            <right_joint>$(arg robot_namespace)rear_right_wheel</right_joint>
+
+            <!-- kinematics -->
+            <wheelbase>0.2</wheelbase>
+            <wheel_separation>0.172</wheel_separation>
+            <wheel_radius>0.045</wheel_radius>
+
+            <topic>$(arg robot_namespace)cmd_vel</topic>
+
+            <odom_topic>$(arg robot_namespace)odom</odom_topic>
+            <frame_id>$(arg robot_namespace)odom</frame_id>
+            <tf_topic>$(arg robot_namespace)tf</tf_topic>
+            <odom_publisher_frequency>30</odom_publisher_frequency>
+            <child_frame_id>$(arg robot_namespace)base_footprint</child_frame_id>
+        </plugin>
+
+        <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher">
+            <topic>$(arg robot_namespace)joint_states</topic>
+            <joint_name>$(arg robot_namespace)front_left_wheel</joint_name>
+            <joint_name>$(arg robot_namespace)front_right_wheel</joint_name>
+            <joint_name>$(arg robot_namespace)rear_left_wheel</joint_name>
+            <joint_name>$(arg robot_namespace)rear_right_wheel</joint_name>
+        </plugin>
+    </gazebo>
+</robot>

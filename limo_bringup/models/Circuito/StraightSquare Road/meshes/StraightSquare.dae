@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Miguel Esparzar</author>
+      <authoring_tool>Blender 3.0.1</authoring_tool>
+    </contributor>
+    <created>2024-02-07T08:51:32</created>
+    <modified>2024-02-07T08:51:32</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="RoadStraight-effect">
+      <profile_COMMON>
+        <newparam sid="Asphalt010_1K-JPG_Color_jpg-surface">
+          <surface type="2D">
+            <init_from>Asphalt010_1K-JPG_Color_jpg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="Asphalt010_1K-JPG_Color_jpg-sampler">
+          <sampler2D>
+            <source>Asphalt010_1K-JPG_Color_jpg-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="Asphalt010_1K-JPG_Color_jpg-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Curb-effect">
+      <profile_COMMON>
+        <newparam sid="Asphalt010_1K-JPG_Color_jpg-surface">
+          <surface type="2D">
+            <init_from>Asphalt010_1K-JPG_Color_jpg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="Asphalt010_1K-JPG_Color_jpg-sampler">
+          <sampler2D>
+            <source>Asphalt010_1K-JPG_Color_jpg-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="Asphalt010_1K-JPG_Color_jpg-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="FootPath-effect">
+      <profile_COMMON>
+        <newparam sid="Asphalt010_1K-JPG_Displacement_jpg-surface">
+          <surface type="2D">
+            <init_from>Asphalt010_1K-JPG_Displacement_jpg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="Asphalt010_1K-JPG_Displacement_jpg-sampler">
+          <sampler2D>
+            <source>Asphalt010_1K-JPG_Displacement_jpg-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="Asphalt010_1K-JPG_Displacement_jpg-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="Asphalt010_1K-JPG_Color_jpg" name="Asphalt010_1K-JPG_Color_jpg">
+      <init_from>../materials/textures/Asphalt010_1K-JPG_Color.jpg</init_from>
+    </image>
+    <image id="Asphalt010_1K-JPG_Displacement_jpg" name="Asphalt010_1K-JPG_Displacement_jpg">
+      <init_from>../materials/textures/Asphalt010_1K-JPG_Displacement.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="RoadStraight-material" name="RoadStraight">
+      <instance_effect url="#RoadStraight-effect"/>
+    </material>
+    <material id="Curb-material" name="Curb">
+      <instance_effect url="#Curb-effect"/>
+    </material>
+    <material id="FootPath-material" name="FootPath">
+      <instance_effect url="#FootPath-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plane-mesh" name="Plane">
+      <mesh>
+        <source id="Plane-mesh-positions">
+          <float_array id="Plane-mesh-positions-array" count="168">0.05339968 -24.93736 0.1460804 0.05339968 24.99635 0.1460804 -6.489141 -24.93736 0.1760683 -6.489141 24.99635 0.1760683 -6.494144 -24.93736 0.2077517 -6.494144 24.99635 0.2077517 -6.509152 -24.93736 0.2494401 -6.509152 24.99635 0.2494401 -6.778761 -24.93736 0.2494401 -6.778761 24.99635 0.2494401 -6.778761 -24.93736 0.1520023 -6.778761 24.99635 0.1520023 -10.29154 -24.93736 0.1520023 -10.29154 24.99635 0.1520023 -6.191781 -24.93736 0.1411265 -6.254936 -24.93736 0.1356232 -6.254936 24.99635 0.1356231 -6.191781 24.99635 0.1411265 -6.348258 -24.93736 0.1193107 -6.409044 -24.93736 0.1017861 -6.409044 24.99635 0.1017862 -6.348258 24.99635 0.1193106 -6.459696 -24.93736 0.08106505 -6.489141 -24.93736 0.1008339 -6.489141 24.99635 0.1008339 -6.459696 24.99635 0.08106511 -10.29154 -24.93736 -0.805139 -10.29154 24.99635 -0.805139 -0.05339968 -24.93736 0.1460804 -0.05339968 24.99635 0.1460804 6.489141 -24.93736 0.1760683 6.489141 24.99635 0.1760683 6.494144 -24.93736 0.2077517 6.494144 24.99635 0.2077517 6.509152 -24.93736 0.2494401 6.509152 24.99635 0.2494401 6.778761 -24.93736 0.2494401 6.778761 24.99635 0.2494401 6.778761 -24.93736 0.1520023 6.778761 24.99635 0.1520023 10.29154 -24.93736 0.1520023 10.29154 24.99635 0.1520023 6.191781 -24.93736 0.1411265 6.254936 -24.93736 0.1356232 6.254936 24.99635 0.1356231 6.191781 24.99635 0.1411265 6.348258 -24.93736 0.1193107 6.409044 -24.93736 0.1017861 6.409044 24.99635 0.1017862 6.348258 24.99635 0.1193106 6.459696 -24.93736 0.08106505 6.489141 -24.93736 0.1008339 6.489141 24.99635 0.1008339 6.459696 24.99635 0.08106511 10.29154 -24.93736 -0.805139 10.29154 24.99635 -0.805139</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-positions-array" count="56" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane-mesh-normals">
+          <float_array id="Plane-mesh-normals-array" count="99">-0.3786333 0 0.9255469 -7.93245e-4 0 0.9999997 1 0 0 0.9877614 0 0.1559725 0.9408866 0 0.3387221 0 0 1 -1 0 0 -0.08681219 0 0.9962248 -0.2770133 0 0.9608662 0.5573977 0 0.8302457 -0.1721874 0 0.9850643 0.3786333 0 0.9255469 7.93245e-4 0 0.9999997 -0.9877614 0 0.1559725 -0.9408866 0 0.3387221 0.08681219 0 0.9962248 0.2770133 0 0.9608662 -0.5573977 0 0.8302457 0.1721874 0 0.9850643 -0.3786333 0 0.9255469 -7.93248e-4 0 0.9999997 0.9408866 0 0.3387221 -0.0868107 0 0.9962248 -0.277015 0 0.9608657 0.5573996 0 0.8302444 -0.1721876 0 0.9850642 0.3786333 0 0.9255469 7.93248e-4 0 0.9999997 -0.9408866 0 0.3387221 0.0868107 0 0.9962248 0.277015 0 0.9608657 -0.5573996 0 0.8302444 0.1721876 0 0.9850642</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-normals-array" count="33" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane-mesh-map-0">
+          <float_array id="Plane-mesh-map-0-array" count="312">0.01220399 2.686592 0.004414081 -1.685868 0.01220399 -1.686762 1 -1.688677 0.04547166 2.688443 0.04547166 -1.688462 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.942506 -4.322955 -0.942506 5.322955 1.942509 5.322955 0.03582084 -1.688225 0.04547166 2.688443 0.03582084 2.688184 0.01220399 -1.686762 0.02153128 2.687417 0.01220399 2.686592 0 -1.686721 0.004414081 2.685618 0 2.686547 0.03582084 2.688184 0.02153128 -1.68752 0.03582084 -1.688225 -0.9425091 -4.322955 -0.942506 5.322955 -0.942506 5.322955 0.004414081 -1.685868 0.01220399 2.686592 0.01220399 -1.686762 0.04547166 2.688443 1 -1.688677 0.04547166 -1.688462 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.942506 5.322955 1.942506 -4.322955 1.942509 5.322955 0.04547166 2.688443 0.03582084 -1.688225 0.03582084 2.688184 0.02153128 2.687417 0.01220399 -1.686762 0.01220399 2.686592 0.004414081 2.685618 0 -1.686721 0 2.686547 0.02153128 -1.68752 0.03582084 2.688184 0.03582084 -1.688225 -0.942506 5.322955 -0.9425091 -4.322955 -0.942506 5.322955 0.01220399 2.686592 0.004414081 2.685618 0.004414081 -1.685868 1 -1.688677 1 2.688677 0.04547166 2.688443 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.942506 -4.322955 -0.9425091 -4.322955 -0.942506 5.322955 0.03582084 -1.688225 0.04547166 -1.688462 0.04547166 2.688443 0.01220399 -1.686762 0.02153128 -1.68752 0.02153128 2.687417 0 -1.686721 0.004414081 -1.685868 0.004414081 2.685618 0.03582084 2.688184 0.02153128 2.687417 0.02153128 -1.68752 -0.9425091 -4.322955 -0.9425091 -4.322955 -0.942506 5.322955 0.004414081 -1.685868 0.004414081 2.685618 0.01220399 2.686592 0.04547166 2.688443 1 2.688677 1 -1.688677 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.942506 5.322955 -0.9425091 -4.322955 1.942506 -4.322955 0.04547166 2.688443 0.04547166 -1.688462 0.03582084 -1.688225 0.02153128 2.687417 0.02153128 -1.68752 0.01220399 -1.686762 0.004414081 2.685618 0.004414081 -1.685868 0 -1.686721 0.02153128 -1.68752 0.02153128 2.687417 0.03582084 2.688184 -0.942506 5.322955 -0.9425091 -4.322955 -0.9425091 -4.322955</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-map-0-array" count="156" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane-mesh-vertices">
+          <input semantic="POSITION" source="#Plane-mesh-positions"/>
+        </vertices>
+        <triangles material="RoadStraight-material" count="24">
+          <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane-mesh-map-0" offset="2" set="0"/>
+          <p>20 0 0 22 0 1 19 0 2 0 1 3 17 1 4 14 1 5 15 7 24 17 7 25 16 7 26 19 8 27 21 8 28 20 8 29 23 9 30 25 9 31 24 9 32 16 10 33 18 10 34 15 10 35 50 11 39 48 11 40 47 11 41 45 12 42 28 12 43 42 12 44 45 15 63 43 15 64 44 15 65 49 16 66 47 16 67 48 16 68 53 17 69 51 17 70 52 17 71 46 18 72 44 18 73 43 18 74 20 19 78 25 19 79 22 19 80 0 20 81 1 20 82 17 20 83 15 22 102 14 22 103 17 22 104 19 23 105 18 23 106 21 23 107 23 24 108 22 24 109 25 24 110 16 25 111 21 25 112 18 25 113 50 26 117 53 26 118 48 26 119 45 27 120 29 27 121 28 27 122 45 29 141 42 29 142 43 29 143 49 30 144 46 30 145 47 30 146 53 31 147 50 31 148 51 31 149 46 32 150 49 32 151 44 32 152</p>
+        </triangles>
+        <triangles material="Curb-material" count="20">
+          <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane-mesh-map-0" offset="2" set="0"/>
+          <p>24 2 6 2 2 7 23 2 8 3 3 9 4 3 10 2 3 11 5 4 12 6 4 13 4 4 14 7 5 15 8 5 16 6 5 17 9 6 18 10 6 19 8 6 20 30 6 45 52 6 46 51 6 47 32 13 48 31 13 49 30 13 50 34 14 51 33 14 52 32 14 53 36 5 54 35 5 55 34 5 56 38 2 57 37 2 58 36 2 59 24 2 84 3 2 85 2 2 86 3 3 87 5 3 88 4 3 89 5 21 90 7 21 91 6 21 92 7 5 93 9 5 94 8 5 95 9 6 96 11 6 97 10 6 98 30 6 123 31 6 124 52 6 125 32 13 126 33 13 127 31 13 128 34 28 129 35 28 130 33 28 131 36 5 132 37 5 133 35 5 134 38 2 135 39 2 136 37 2 137</p>
+        </triangles>
+        <triangles material="FootPath-material" count="8">
+          <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane-mesh-map-0" offset="2" set="0"/>
+          <p>11 5 21 12 5 22 10 5 23 13 6 36 26 6 37 12 6 38 40 5 60 39 5 61 38 5 62 54 2 75 41 2 76 40 2 77 11 5 99 13 5 100 12 5 101 13 6 114 27 6 115 26 6 116 40 5 138 41 5 139 39 5 140 54 2 153 55 2 154 41 2 155</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="RoadStraight" name="RoadStraight" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 0.4122065 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Plane-mesh" name="RoadStraight">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="RoadStraight-material" target="#RoadStraight-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="Curb-material" target="#Curb-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="FootPath-material" target="#FootPath-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

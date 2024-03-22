@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="Letter panel">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Circuito/Letter Panel/meshes/letter_panel.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="panel">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://Circuito/Letter Panel/meshes/letter_panel.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

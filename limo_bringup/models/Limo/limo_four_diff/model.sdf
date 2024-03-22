@@ -1,0 +1,588 @@
+<?xml version="1.0"?>
+<sdf version='1.9'>
+  <model name='limo_four_diff'>
+    <link name='base_footprint'>
+      <inertial>
+        <pose>0 0 0.15 0 0 0</pose>
+        <mass>2.1556999999999999</mass>
+        <inertia>
+          <ixx>0.23999999999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.95999999999999996</iyy>
+          <iyz>0</iyz>
+          <izz>0.95999999999999996</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_footprint_fixed_joint_lump__base_link_collision'>
+        <pose>0 0 0.15 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.12 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='base_footprint_fixed_joint_lump__base_link_visual'>
+        <pose>0 0 0 0 0 1.57</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/esparza/uned_tfg/ros2_ws/install/uned_limo_gazebo/share/uned_limo_gazebo/limo_description/meshes/limo_optimal.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='depth_camera_joint' type='revolute'>
+      <pose relative_to='base_footprint'>0.08400000000000001 0 0.18 0 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>depth_camera_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='depth_camera_link'>
+      <pose relative_to='depth_camera_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>9.9999999999999995e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9.9999999999999995e-07</iyy>
+          <iyz>0</iyz>
+          <izz>9.9999999999999995e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='depth_camera_link_fixed_joint_lump__depth_camera_collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.06 0.015</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='depth_camera_link_fixed_joint_lump__depth_camera_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.06 0.015</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0.125 0.125 0.125 1</diffuse>
+          <ambient>0.125 0.125 0.125 1</ambient>
+        </material>
+      </visual>
+      <sensor name='sensor_camera' type='depth'>
+        <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <topic>color/image_raw</topic>
+        <camera name='head'>
+          <camera_info_topic>color/camera_info</camera_info_topic>
+          <horizontal_fov>1.3962634</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+        </camera>
+        <gz_frame_id>depth_link</gz_frame_id>
+      </sensor>
+    </link>
+    <joint name='front_left_wheel' type='revolute'>
+      <pose relative_to='base_footprint'>0.1 0.065 0.04999999999999999 0 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>front_left_wheel_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+          <effort>50</effort> <!-- from <wheel_torque> in libgazebo_ros_diff_drive.so.-->
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='front_left_wheel_link'>
+      <pose relative_to='front_left_wheel'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.01055</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00075000000000000002</iyy>
+          <iyz>0</iyz>
+          <izz>0.01055</izz>
+        </inertia>
+      </inertial>
+      <collision name='front_left_wheel_link_collision'>
+        <pose>0 0.0225 0 1.57 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.044999999999999998</length>
+            <radius>0.044999999999999998</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>50</mu>
+              <mu2>50</mu2>
+              <fdir1>1 0 0</fdir1>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>10000000.0</kp>
+              <kd>1.0</kd>
+              <min_depth>0.01</min_depth>
+            </ode>
+          </contact>
+        </surface>
+        <maxContacts value="64"/>
+      </collision>
+      <visual name='front_left_wheel_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/esparza/uned_tfg/ros2_ws/install/uned_limo_gazebo/share/uned_limo_gazebo/limo_description/meshes/limo_optimal_wheels.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='front_right_wheel' type='revolute'>
+      <pose relative_to='base_footprint'>0.1 -0.065 0.04999999999999999 3.14159 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>front_right_wheel_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+          <effort>50</effort> <!-- from <wheel_torque> in libgazebo_ros_diff_drive.so.-->
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='front_right_wheel_link'>
+      <pose relative_to='front_right_wheel'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.01055</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00075000000000000002</iyy>
+          <iyz>0</iyz>
+          <izz>0.01055</izz>
+        </inertia>
+      </inertial>
+      <collision name='front_right_wheel_link_collision'>
+        <pose>0 0.0225 0 1.57 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.044999999999999998</length>
+            <radius>0.044999999999999998</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>50</mu>
+              <mu2>50</mu2>
+              <fdir1>1 0 0</fdir1>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>10000000.0</kp>
+              <kd>1.0</kd>
+              <min_depth>0.01</min_depth>
+            </ode>
+          </contact>
+        </surface>
+        <maxContacts value="64"/>
+      </collision>
+      <visual name='front_right_wheel_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/esparza/uned_tfg/ros2_ws/install/uned_limo_gazebo/share/uned_limo_gazebo/limo_description/meshes/limo_optimal_wheels.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='imu_joint' type='revolute'>
+      <pose relative_to='base_footprint'>0 0 0.04999999999999999 0 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>imu_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='imu_link'>
+      <pose relative_to='imu_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>9.9999999999999995e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9.9999999999999995e-08</iyy>
+          <iyz>0</iyz>
+          <izz>9.9999999999999995e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='imu_link_fixed_joint_lump__imu_collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.001 0.001 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='imu_link_fixed_joint_lump__imu_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.001 0.001 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0.125 0.125 0.125 1</diffuse>
+          <ambient>0.125 0.125 0.125 1</ambient>
+        </material>
+      </visual>
+      <gravity>true</gravity>
+      <sensor name='imu_sensor' type='imu'>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <visualize>true</visualize>
+        <topic>imu</topic>
+        <pose>0 0 0 0 0 0</pose>
+        <gz_frame_id>imu_link</gz_frame_id>
+      </sensor>
+    </link>
+    <joint name='laser_joint' type='revolute'>
+      <pose relative_to='base_footprint'>0.103 0 0.116 0 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>laser_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='laser_link'>
+      <pose relative_to='laser_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>9.9999999999999995e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9.9999999999999995e-07</iyy>
+          <iyz>0</iyz>
+          <izz>9.9999999999999995e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='laser_link_fixed_joint_lump__laser_collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.016</length>
+            <radius>0.032000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='laser_link_fixed_joint_lump__laser_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.01</length>
+            <radius>0.02</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0.125 0.125 0.125 1</diffuse>
+          <ambient>0.125 0.125 0.125 1</ambient>
+        </material>
+      </visual>
+      <sensor name='laser_sensor' type='gpu_lidar'>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>8</update_rate>
+        <topic>scan</topic>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>1</resolution>
+              <min_angle>-2.0943950400000002</min_angle>
+              <max_angle>2.0943950400000002</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.050000000000000003</min>
+            <max>8</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </lidar>
+        <gz_frame_id>laser_link</gz_frame_id>
+      </sensor>
+    </link>
+    <joint name='rear_left_wheel' type='revolute'>
+      <pose relative_to='base_footprint'>-0.1 0.065 0.04999999999999999 0 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>rear_left_wheel_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+          <effort>50</effort> <!-- from <wheel_torque> in libgazebo_ros_diff_drive.so.-->
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='rear_left_wheel_link'>
+      <pose relative_to='rear_left_wheel'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.01055</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00075000000000000002</iyy>
+          <iyz>0</iyz>
+          <izz>0.01055</izz>
+        </inertia>
+      </inertial>
+      <collision name='rear_left_wheel_link_collision'>
+        <pose>0 0.0225 0 1.57 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.044999999999999998</length>
+            <radius>0.044999999999999998</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>50</mu>
+              <mu2>50</mu2>
+              <fdir1>1 0 0</fdir1>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>10000000.0</kp>
+              <kd>1.0</kd>
+              <min_depth>0.01</min_depth>
+            </ode>
+          </contact>
+        </surface>
+        <maxContacts value="64"/>
+      </collision>
+      <visual name='rear_left_wheel_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/esparza/uned_tfg/ros2_ws/install/uned_limo_gazebo/share/uned_limo_gazebo/limo_description/meshes/limo_optimal_wheels.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='rear_right_wheel' type='revolute'>
+      <pose relative_to='base_footprint'>-0.1 -0.065 0.04999999999999999 3.14159 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>rear_right_wheel_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+          <effort>50</effort> <!-- from <wheel_torque> in libgazebo_ros_diff_drive.so.-->
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    <link name='rear_right_wheel_link'>
+      <pose relative_to='rear_right_wheel'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.01055</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00075000000000000002</iyy>
+          <iyz>0</iyz>
+          <izz>0.01055</izz>
+        </inertia>
+      </inertial>
+      <collision name='rear_right_wheel_link_collision'>
+        <pose>0 0.0225 0 1.57 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.044999999999999998</length>
+            <radius>0.044999999999999998</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>50</mu>
+              <mu2>50</mu2>
+              <fdir1>1 0 0</fdir1>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>10000000.0</kp>
+              <kd>1.0</kd>
+              <min_depth>0.01</min_depth>
+            </ode>
+          </contact>
+        </surface>
+        <maxContacts value="64"/>
+      </collision>
+      <visual name='rear_right_wheel_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/esparza/uned_tfg/ros2_ws/install/uned_limo_gazebo/share/uned_limo_gazebo/limo_description/meshes/limo_optimal_wheels.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <plugin name='ignition::gazebo::systems::DiffDrive' filename='libignition-gazebo-diff-drive-system.so'>
+      <left_joint>front_left_wheel</left_joint>
+      <right_joint>front_right_wheel</right_joint>
+      <left_joint>rear_left_wheel</left_joint>
+      <right_joint>rear_right_wheel</right_joint>
+      <wheelbase>0.2</wheelbase>
+      <wheel_separation>0.172</wheel_separation>
+      <wheel_radius>0.045</wheel_radius>
+      <topic>cmd_vel</topic>
+      <odom_topic>odom</odom_topic>
+      <frame_id>odom</frame_id>
+      <tf_topic>tf</tf_topic>
+      <odom_publisher_frequency>30</odom_publisher_frequency>
+      <child_frame_id>base_footprint</child_frame_id>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::JointStatePublisher' filename='libignition-gazebo-joint-state-publisher-system.so'>
+      <topic>joint_states</topic>
+      <joint_name>front_left_wheel</joint_name>
+      <joint_name>front_right_wheel</joint_name>
+      <joint_name>rear_left_wheel</joint_name>
+      <joint_name>rear_right_wheel</joint_name>
+    </plugin>
+    <frame name='inertial_joint' attached_to='base_link'>
+      <pose>0 0 0 0 -0 0</pose>
+    </frame>
+    <frame name='inertial_link' attached_to='inertial_joint'/>
+    <frame name='base_joint' attached_to='base_footprint'>
+      <pose>0 0 0.15 0 -0 0</pose>
+    </frame>
+    <frame name='base_link' attached_to='base_joint'/>
+    <frame name='depth_camera_to_camera_joint' attached_to='depth_camera_link'>
+      <pose>0 0 0 -1.57079 -0 -1.57079</pose>
+    </frame>
+    <frame name='depth_link' attached_to='depth_camera_to_camera_joint'/>
+  </model>
+</sdf>
