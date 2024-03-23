@@ -48,7 +48,7 @@ def generate_launch_description():
             arguments=["-file", urdf_file.name,
                        "-x", "-0.1935",
                        "-y", "0.1991",
-                       "-z", "0.0532"]
+                       "-z", "0.06"]
         ),
 
         # Bridges entre ROS2 e Ignition

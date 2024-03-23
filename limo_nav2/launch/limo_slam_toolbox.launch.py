@@ -1,4 +1,3 @@
-
 import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -12,6 +11,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
     slam_params_file = LaunchConfiguration('slam_params_file')
     rviz_config_path = os.path.join(pkg_dir, 'limo_description', 'rviz', 'limo_slam_toolbox.rviz')
+    robot_localization_file_path = os.path.join(pkg_dir, 'limo_nav2', 'config', 'ekf.yaml') 
 
     declare_use_sim_time_argument = DeclareLaunchArgument(
         'use_sim_time',
@@ -30,8 +30,24 @@ def generate_launch_description():
         package='slam_toolbox',
         executable='async_slam_toolbox_node',
         name='slam_toolbox',
-        output='screen')
+        output='screen'
+    )
     
+    # Inicia el nodo robot localization -> Extended Kalman filter
+    start_robot_localization_ekf_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[robot_localization_file_path, 
+            {'use_sim_time': use_sim_time}
+        ],
+        remappings=[
+            ('wheel/odometry', 'odom'),
+            ('imu/data', 'imu'),
+        ]
+    )
+
     start_rviz2 = Node(
         package='rviz2',
         executable='rviz2',
@@ -45,6 +61,7 @@ def generate_launch_description():
     ld.add_action(declare_use_sim_time_argument)
     ld.add_action(declare_slam_params_file_cmd)
     ld.add_action(start_async_slam_toolbox_node)
+    ld.add_action(start_robot_localization_ekf_node)
     ld.add_action(start_rviz2)
 
     return ld

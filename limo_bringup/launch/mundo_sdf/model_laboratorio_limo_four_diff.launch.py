@@ -16,8 +16,8 @@ def generate_launch_description():
     xacro_path = os.path.join(get_package_share_path('uned_limo_gazebo'), 'limo_description', 'urdf', 'limo_four_diff.xacro')
     world_path = os.path.join(pkg_dir, 'limo_bringup', 'worlds', 'model_laboratorio.sdf')
     rviz_config_path = os.path.join(pkg_dir, 'limo_description', 'rviz', 'model_display.rviz')
-    bridge_params = os.path.join(pkg_dir, 'limo_bringup', 'param', 'bridge', 'one_limo.yaml') 
-
+    bridge_params = os.path.join(pkg_dir, 'limo_bringup', 'param', 'bridge', 'one_limo.yaml')
+ 
     # Configuración y parámetros
     robot_description = ParameterValue(Command(['xacro ', xacro_path]), 
                                        value_type=str)
