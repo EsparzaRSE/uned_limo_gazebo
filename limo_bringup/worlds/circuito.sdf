@@ -35,10 +35,19 @@
           </geometry>
           <surface>
             <friction>
-              <ode/>
+              <ode>
+                <mu>10</mu>
+                <mu2>10</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
             </friction>
-            <bounce/>
-            <contact/>
+            <contact>
+              <ode>
+                <kp>10000000.0</kp>
+                <kd>1.0</kd>
+                <min_depth>0.01</min_depth>
+              </ode>
+            </contact>
           </surface>
         </collision>
         <visual name='visual'>
@@ -91,6 +100,13 @@
         <falloff>0</falloff>
       </spot>
     </light>
+    <!-- Limo -->
+    <model name="limo_four_diff">
+      <pose>0 0.25 0.06 0 0 0</pose>
+      <include>
+        <uri>model://Limo/limo_four_diff</uri>
+      </include>
+    </model>
     <!-- Carretera -->
     <!-- Forma de T -->
     <model name="t_junction_road_1">
@@ -217,6 +233,22 @@
               <size>8.7 9.4 0.1</size>
             </box>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>10</mu>
+                <mu2>10</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000000.0</kp>
+                <kd>1.0</kd>
+                <min_depth>0.01</min_depth>
+              </ode>
+            </contact>
+          </surface>
         </collision>
       </link>
     </model>

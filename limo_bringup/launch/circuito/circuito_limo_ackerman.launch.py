@@ -18,13 +18,6 @@ def generate_launch_description():
     rviz_config_path = os.path.join(pkg_dir, 'limo_description', 'rviz', 'model_display.rviz')
     bridge_params = os.path.join(pkg_dir, 'limo_bringup', 'param', 'bridge', 'one_limo.yaml') 
 
-    # Crea un urdf temporal para spawnear el robot en el mundo
-    urdf = subprocess.check_output(['xacro', xacro_path])
-    
-    urdf_file = tempfile.NamedTemporaryFile(delete=False)
-    urdf_file.write(urdf)
-    urdf_file.close()
-
     # Configuración y parámetros
     robot_description = ParameterValue(Command(['xacro ', xacro_path]), 
                                        value_type=str)
@@ -38,17 +31,6 @@ def generate_launch_description():
         ExecuteProcess(
             cmd=['ign', 'gazebo', '-r', world_path],
             output='screen'
-        ),
-
-        # Carga el robot en el mundo
-        Node(
-            package='ros_ign_gazebo',
-            executable='create',
-            output='screen',
-            arguments=["-file", urdf_file.name,
-                       "-x", "-0.1935",
-                       "-y", "0.1991",
-                       "-z", "0.0532"]
         ),
 
         # Bridges entre ROS2 e Ignition
@@ -74,7 +56,7 @@ def generate_launch_description():
             package='robot_state_publisher',
             executable='robot_state_publisher',
             name='robot_state_publisher',
-            parameters=[{'use_sim_time': use_sim_time, 'robot_description': robot_description}], #
+            parameters=[{'use_sim_time': use_sim_time, 'robot_description': robot_description}],
             output="screen"
              
         ),
