@@ -6,8 +6,8 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
-
 from launch_ros.actions import Node
+
 from nav2_common.launch import RewrittenYaml
 
 def generate_launch_description():
