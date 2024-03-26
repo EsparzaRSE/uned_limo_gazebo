@@ -100,14 +100,6 @@
         <falloff>0</falloff>
       </spot>
     </light>
-    <!-- Limo -->
-    <model name="limo_four_diff">
-      <pose>0 0.25 0.06 0 0 0</pose>
-      <include>
-        <uri>model://Limo/limo_four_diff</uri>
-      </include>
-    </model>
-    <!-- Carretera -->
     <!-- Forma de T -->
     <model name="t_junction_road_1">
       <static>true</static>

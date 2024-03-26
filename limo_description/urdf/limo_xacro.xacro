@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="limo_xacro" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:include filename="$(find uned_limo_gazebo)/limo_description/urdf/limo_materials.xacro" />
-
+    
     <xacro:macro name="limo_wheel" params="parent_prefix wheel_prefix reflect *joint_pose">
-        <link name="$(arg robot_namespace)${wheel_prefix}_wheel_link">
+        <link name="${wheel_prefix}_wheel_link">
             <inertial>
                 <origin xyz="0 0 0" />
                 <mass value="0.5" />
@@ -13,7 +13,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="file://$(find uned_limo_gazebo)/limo_description/meshes/limo_optimal_wheels.dae" scale="1 1 1"/>
+                    <mesh filename="file://$(find uned_limo_gazebo)/limo_description/meshes/limo_optimal_wheels.dae" />
                 </geometry>
             </visual>
             <collision>
@@ -24,9 +24,9 @@
             </collision>
         </link>
 
-        <joint name="$(arg robot_namespace)${wheel_prefix}_wheel" type="continuous">
-            <parent link="$(arg robot_namespace)${parent_prefix}"/>
-            <child link="$(arg robot_namespace)${wheel_prefix}_wheel_link"/>
+        <joint name="${wheel_prefix}_wheel" type="continuous">
+            <parent link="${parent_prefix}"/>
+            <child link="${wheel_prefix}_wheel_link"/>
             <xacro:insert_block name="joint_pose"/>
             <axis xyz="0 ${reflect*1} 0">
                 <limit>
@@ -36,9 +36,8 @@
         </joint>
     </xacro:macro>
 
-
     <xacro:macro name="limo_laser" params="parent_prefix frame_prefix *joint_pose">
-        <link name='$(arg robot_namespace)${frame_prefix}_link'>
+        <link name='${frame_prefix}_link'>
             <pose>0 0 0 0 0 0</pose>
             <inertial>
                 <mass value="0.1"/>
@@ -63,15 +62,15 @@
                 </geometry>
             </collision>
         </link>
-        <joint type="fixed" name="$(arg robot_namespace)laser_joint">
+        <joint type="fixed" name="laser_joint">
             <xacro:insert_block name="joint_pose"/>
-            <child link="$(arg robot_namespace)${frame_prefix}_link"/>
-            <parent link="$(arg robot_namespace)${parent_prefix}"/>
+            <child link="${frame_prefix}_link"/>
+            <parent link="${parent_prefix}"/>
         </joint>
     </xacro:macro>
 
     <xacro:macro name="limo_depth_camera" params="parent_prefix frame_prefix *joint_pose">
-        <link name='$(arg robot_namespace)${frame_prefix}_link'>
+        <link name='${frame_prefix}_link'>
             <pose>0 0 0 0 0 0</pose>
             <inertial>
                 <mass value="0.1"/>
@@ -95,25 +94,26 @@
                     <box size="0.02 0.06 0.015"/>
                 </geometry>
             </collision>
+
         </link>
     
-        <joint type="fixed" name="$(arg robot_namespace)depth_camera_joint">
+        <joint type="fixed" name="depth_camera_joint">
             <xacro:insert_block name="joint_pose"/>
-            <child link="$(arg robot_namespace)${frame_prefix}_link"/>
-            <parent link="$(arg robot_namespace)${parent_prefix}"/>
+            <child link="${frame_prefix}_link"/>
+            <parent link="${parent_prefix}"/>
         </joint>
-        
-        <link name="$(arg robot_namespace)depth_link"></link>
 
-        <joint name="$(arg robot_namespace)${frame_prefix}_to_camera_joint" type="fixed">
+        <link name="depth_link"></link>
+
+        <joint name="${frame_prefix}_to_camera_joint" type="fixed">
             <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2} "/>
-            <parent link="$(arg robot_namespace)${frame_prefix}_link"/>
-            <child link="$(arg robot_namespace)depth_link"/>
+            <parent link="${frame_prefix}_link"/>
+            <child link="depth_link"/>
         </joint>
     </xacro:macro>
 
     <xacro:macro name="limo_imu" params="parent_prefix frame_prefix  *joint_pose">
-        <link name='$(arg robot_namespace)${frame_prefix}_link'>
+        <link name='${frame_prefix}_link'>
             <pose>0 0 0 0 0 0</pose>
             <inertial>
                 <mass value="0.01"/>
@@ -138,10 +138,10 @@
                 </geometry>
             </collision>
         </link>
-        <joint type="fixed" name="$(arg robot_namespace)imu_joint">
+        <joint type="fixed" name="imu_joint">
             <xacro:insert_block name="joint_pose"/>
-            <child link="$(arg robot_namespace)${frame_prefix}_link"/>
-            <parent link="$(arg robot_namespace)${parent_prefix}"/>
+            <child link="${frame_prefix}_link"/>
+            <parent link="${parent_prefix}"/>
         </joint>
     </xacro:macro>
 </robot>

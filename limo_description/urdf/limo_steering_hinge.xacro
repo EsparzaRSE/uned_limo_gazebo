@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="limo_steering_hinge" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:macro name="limo_left_steering_hinge" params="parent_prefix wheel_prefix *joint_pose">
-        <link name="$(arg robot_namespace)${wheel_prefix}">
+        <link name="${wheel_prefix}">
             <inertial>
               <mass value="0.25" />
               <inertia ixx="0.00525" ixy="0" ixz="0" iyy="0.00035" iyz="0" izz="0.00525" />
@@ -23,17 +23,16 @@
             </collision>
         </link>
 
-        <joint name="$(arg robot_namespace)${wheel_prefix}_wheel" type="revolute">
-            <parent link="$(arg robot_namespace)${parent_prefix}"/>
-            <child link="$(arg robot_namespace)${wheel_prefix}"/>
+        <joint name="${wheel_prefix}_wheel" type="revolute">
+            <parent link="${parent_prefix}"/>
+            <child link="${wheel_prefix}"/>
             <xacro:insert_block name="joint_pose"/>
             <axis xyz="0 0 1" />
             <limit lower="-0.523598767" upper="0.523598767" effort="5" velocity="0.5" />
             <dynamics damping="1.0" friction="2.0"/>
-
         </joint>
 
-        <link name="$(arg robot_namespace)front_left_wheel_link">
+        <link name="front_left_wheel_link">
           <inertial>
             <mass value="0.25" />
             <inertia ixx="0.00525" ixy="0" ixz="0" iyy="0.00035" iyz="0" izz="0.00525" />
@@ -43,7 +42,7 @@
           <visual>
               <origin xyz="0 0 0" rpy="0 0 0" />
               <geometry>
-                  <mesh filename="file://$(find uned_limo_gazebo)/limo_description/meshes/limo_optimal_wheels.dae" scale="1 1 1"/>
+                  <mesh filename="file://$(find uned_limo_gazebo)/limo_description/meshes/limo_optimal_wheels.dae" />
               </geometry>
           </visual>
           <collision>
@@ -54,16 +53,16 @@
           </collision>
       </link>
 
-      <joint name="$(arg robot_namespace)front_left_wheel" type="continuous">
-          <parent link="$(arg robot_namespace)${wheel_prefix}"/>
-          <child link="$(arg robot_namespace)front_left_wheel_link"/>
+      <joint name="front_left_wheel" type="continuous">
+          <parent link="${wheel_prefix}"/>
+          <child link="front_left_wheel_link"/>
           <origin xyz="0 0 0" rpy="0 0  0" />
           <axis xyz="0 1 0"/>
       </joint>
     </xacro:macro>
 
     <xacro:macro name="limo_right_steering_hinge" params="parent_prefix wheel_prefix *joint_pose">
-        <link name="$(arg robot_namespace)${wheel_prefix}">
+        <link name="${wheel_prefix}">
           <inertial>
             <mass value="0.25" />
             <inertia ixx="0.00525" ixy="0" ixz="0" iyy="0.00035" iyz="0" izz="0.00525" />
@@ -84,16 +83,16 @@
             </collision>
         </link>
 
-        <joint name="$(arg robot_namespace)${wheel_prefix}_wheel" type="revolute">
-            <parent link="$(arg robot_namespace)${parent_prefix}"/>
-            <child link="$(arg robot_namespace)${wheel_prefix}"/>
+        <joint name="${wheel_prefix}_wheel" type="revolute">
+            <parent link="${parent_prefix}"/>
+            <child link="${wheel_prefix}"/>
             <xacro:insert_block name="joint_pose"/>
             <axis xyz="0 0 -1"/>
             <limit lower="-0.523598767" upper="0.523598767" effort="5" velocity="0.5" />
             <dynamics damping="1.0" friction="2.0"/>
         </joint>
 
-        <link name="$(arg robot_namespace)front_right_wheel_link">
+        <link name="front_right_wheel_link">
           <inertial>
             <mass value="0.25" />
             <inertia ixx="0.00525" ixy="0" ixz="0" iyy="0.00035" iyz="0" izz="0.00525" />
@@ -102,7 +101,7 @@
           <visual>
               <origin xyz="0 0 0" rpy="0 0 0" />
               <geometry>
-                  <mesh filename="file://$(find uned_limo_gazebo)/limo_description/meshes/limo_optimal_wheels.dae" scale="1 1 1" />
+                  <mesh filename="file://$(find uned_limo_gazebo)/limo_description/meshes/limo_optimal_wheels.dae" />
               </geometry>
           </visual>
           <collision>
@@ -113,10 +112,10 @@
           </collision>
       </link>
 
-      <joint name="$(arg robot_namespace)front_right_wheel" type="continuous">
-          <parent link="$(arg robot_namespace)${wheel_prefix}"/>
-          <child link="$(arg robot_namespace)front_right_wheel_link"/>
-          <origin xyz="0 0 0" rpy="0 0  0" />
+      <joint name="front_right_wheel" type="continuous">
+          <parent link="${wheel_prefix}"/>
+          <child link="front_right_wheel_link"/>
+          <origin xyz="0 0 0" rpy="0 0 0" />
           <axis xyz="0 -1 0"/>
       </joint>
     </xacro:macro>

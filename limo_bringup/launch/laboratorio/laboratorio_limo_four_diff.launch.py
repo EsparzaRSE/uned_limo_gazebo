@@ -15,6 +15,7 @@ def generate_launch_description():
     pkg_dir = get_package_share_directory('uned_limo_gazebo')
     xacro_path = os.path.join(get_package_share_path('uned_limo_gazebo'), 'limo_description', 'urdf', 'limo_four_diff.xacro')
     world_path = os.path.join(pkg_dir, 'limo_bringup', 'worlds', 'laboratorio.sdf')
+    model_path = os.path.join(get_package_share_path('uned_limo_gazebo'), 'limo_bringup', 'models', 'Limo', 'limo_four_diff', 'model.sdf')
     rviz_config_path = os.path.join(pkg_dir, 'limo_description', 'rviz', 'model_display.rviz')
     bridge_params = os.path.join(pkg_dir, 'limo_bringup', 'param', 'bridge', 'one_limo.yaml')
  
@@ -31,6 +32,17 @@ def generate_launch_description():
         ExecuteProcess(
             cmd=['ign', 'gazebo', '-r', world_path],
             output='screen'
+        ),
+
+                # Carga el robot en el mundo
+        Node(
+            package='ros_ign_gazebo',
+            executable='create',
+            output='screen',
+            arguments=["-file", model_path,
+                       "-x", "0",
+                       "-y", "0",
+                       "-z", "0"]
         ),
 
         # Bridges entre ROS2 e Ignition

@@ -34,22 +34,22 @@
   direction: ROS_TO_GZ
 
 # gz topic published by IMU plugin
-- ros_topic_name: "imu"
-  gz_topic_name: "imu"
+- ros_topic_name: "/limo/imu"
+  gz_topic_name: "/limo/imu"
   ros_type_name: "sensor_msgs/msg/Imu"
   gz_type_name: "gz.msgs.IMU"
   direction: GZ_TO_ROS
 
 # gz topic published by Sensors plugin
-- ros_topic_name: "scan"
-  gz_topic_name: "scan"
+- ros_topic_name: "/limo/scan"
+  gz_topic_name: "/limo/scan"
   ros_type_name: "sensor_msgs/msg/LaserScan"
   gz_type_name: "gz.msgs.LaserScan"
   direction: GZ_TO_ROS
 
 # gz topic published by Sensors plugin (Camera)
-- ros_topic_name: "color/camera_info"
-  gz_topic_name: "color/camera_info"
+- ros_topic_name: "/limo/color/camera_info"
+  gz_topic_name: "/limo/color/camera_info"
   ros_type_name: "sensor_msgs/msg/CameraInfo"
   gz_type_name: "gz.msgs.CameraInfo"
   direction: GZ_TO_ROS
