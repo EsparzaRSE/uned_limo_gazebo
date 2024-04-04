@@ -6,14 +6,14 @@
   direction: GZ_TO_ROS
 
 # gz topic published by JointState plugin
-- ros_topic_name: "joint_states"
+- ros_topic_name: "limo1_four_diff/joint_states"
   gz_topic_name: "limo1_four_diff/joint_states"
   ros_type_name: "sensor_msgs/msg/JointState"
   gz_type_name: "gz.msgs.Model"
   direction: GZ_TO_ROS
 
 # gz topic published by DiffDrive plugin
-- ros_topic_name: "odom"
+- ros_topic_name: "limo1_four_diff/odom"
   gz_topic_name: "limo1_four_diff/odom"
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "gz.msgs.Odometry"
@@ -27,30 +27,43 @@
   direction: GZ_TO_ROS
 
 # gz topic subscribed to by DiffDrive plugin
-- ros_topic_name: "cmd_vel"
+- ros_topic_name: "limo1_four_diff/cmd_vel"
   gz_topic_name: "limo1_four_diff/cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
   direction: ROS_TO_GZ
 
-
-# gz topic published by IMU plugin
-- ros_topic_name: "imu"
-  gz_topic_name: "limo1_four_diff/imu"
-  ros_type_name: "sensor_msgs/msg/Imu"
-  gz_type_name: "gz.msgs.IMU"
-  direction: GZ_TO_ROS
-
-# gz topic published by Sensors plugin (LIDAR)
-- ros_topic_name: "scan"
+# gz topic published by Sensors plugin
+- ros_topic_name: "limo1_four_diff/scan"
   gz_topic_name: "limo1_four_diff/scan"
   ros_type_name: "sensor_msgs/msg/LaserScan"
   gz_type_name: "gz.msgs.LaserScan"
   direction: GZ_TO_ROS
 
+# gz topic published by Sensors plugin
+- ros_topic_name: "limo1_four_diff/scan/points"
+  gz_topic_name: "limo1_four_diff/scan/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
+# gz topic published by IMU plugin
+- ros_topic_name: "limo1_four_diff/imu"
+  gz_topic_name: "limo1_four_diff/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  direction: GZ_TO_ROS
+
 # gz topic published by Sensors plugin (Camera)
-- ros_topic_name: "color/camera_info"
+- ros_topic_name: "limo1_four_diff/color/camera_info"
   gz_topic_name: "limo1_four_diff/color/camera_info"
   ros_type_name: "sensor_msgs/msg/CameraInfo"
   gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+
+# gz topic published by Sensors plugin
+- ros_topic_name: "limo1_four_diff/color/image_raw/points"
+  gz_topic_name: "limo1_four_diff/color/image_raw/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
   direction: GZ_TO_ROS

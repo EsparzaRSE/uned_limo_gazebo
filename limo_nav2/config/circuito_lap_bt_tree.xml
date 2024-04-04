@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute = "MainTree">
+    <BehaviorTree ID="MainTree">
+        <Sequence name="sequence">
+            <GoToPose name="go_to_location1" loc="location1"/>
+            <GoToPose name="go_to_location2" loc="location2"/>
+            <GoToPose name="go_to_location3" loc="location3"/>
+            <GoToPose name="go_to_location4" loc="location4"/>
+            <GoToPose name="go_to_location5" loc="location5"/>
+            <GoToPose name="go_to_location6" loc="location6"/>
+            <GoToPose name="go_to_location7" loc="location7"/>
+            <GoToPose name="go_to_location8" loc="location8"/>
+            <GoToPose name="go_to_location9" loc="location9"/>
+            <GoToPose name="go_to_location10" loc="location10"/>
+            <GoToPose name="go_to_location11" loc="location11"/>
+        </Sequence>
+    </BehaviorTree>
+</root>

@@ -45,11 +45,11 @@ def generate_launch_description():
 
         DeclareLaunchArgument(
             'map',
-            default_value=os.path.join(pkg_dir, 'limo_nav2', 'config', 'maps', 'circuito1.yaml'), #labo1.yaml
+            default_value=os.path.join(pkg_dir, 'limo_nav2', 'config', 'maps', 'circuito2.yaml'), #labo1.yaml
             description='Full path to map yaml file to load'),
 
         DeclareLaunchArgument(
-            'use_sim_time', default_value='false',
+            'use_sim_time', default_value='true',
             description='Use simulation (Gazebo) clock if true'),
 
         DeclareLaunchArgument(
